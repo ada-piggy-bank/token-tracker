@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,5 +54,13 @@ public class TokenFactory {
                 allowedTokens.add(env.getProperty("token."+token));
             }
         }
+    }
+
+    public List<Token> getTokens(List<String> assetIds) {
+        List<Token> tokens = new ArrayList<>();
+        for(String assetId : assetIds) {
+            tokens.add(getToken(assetId));
+        }
+        return tokens;
     }
 }
